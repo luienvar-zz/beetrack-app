@@ -1,0 +1,85 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<body>
+
+<!--    -->
+<div class="fondo">
+
+      <div class="box">
+          <div><img src="{{logo}}" style="display: block; margin: auto;"></div>
+            <div class="d-flex justify-content-end">
+                <div class="mr-auto p-2">
+                    <div class="input-group">
+                      <input #box type="text" class="form-control" placeholder="Search for... " (keyup)="searchUser(box.value)">
+                      <span class="input-group-btn">
+                        <button class="btn btn-lg btn-outline-warning button1" (click)="searchUser(box.value)"><span class="fa fa-search" aria-hidden="true"></span></button>
+                      </span>
+                    </div>
+                  </div>
+                <div class="p-2"><button class="btn btn-lg btn-outline-warning button1" (click)="open(content)"><span class="fa fa-user-plus" aria-hidden="true">Agregar</span></button></div>
+            </div>
+
+<!-- Tabla que muestra los usuario -->
+            <div>
+            <table class="table table-striped table-inverse table-hover">
+              <thead>
+                <tr class="bg-warning">
+                  <th>Usuario</th>
+                  <th>Descripcion</th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let user of data[0]">
+                <tr>
+                  <td>
+                    <div class="d-flex flex-row">
+                      <div class="p-2"><img class="rounded-circle" src="{{user.photo}}" alt="Not Found" style="height: 100px; width: 100px"></div>
+                      <div class="p-2">
+                        <p class="lead" style="text-align:center">{{user.name}}</p>
+                        <button class="btn btn-link button2" (click)="deleteUser(user.id)">Eliminar</button>
+                      </div>
+                    </div>
+                  </td>
+                  <td><div><p class="lead">{{user.description}}</p></div></td>
+                </tr>
+              </tbody>
+            </table>
+            </div>
+<!--  Botones para la paginacion  -->
+            <div class="d-flex justify-content-end">
+              <button class="btn btn-lg btn-outline-warning btn-circle p-2 button1" *ngIf="showPrev" (click)="previousPage()"><span class="fa fa-arrow-left"></span></button>
+              <button class="btn btn-lg btn-outline-warning  btn-circle p-2 button1" *ngIf="showNext" (click)="nextPage()"><span class="fa fa-arrow-right"></span></button>
+            </div>
+
+      </div>
+
+<!-- Template del Modal que permite agregar nuevo usuario   -->
+      <ng-template #content let-c="close" let-d="dismiss">
+        <div class="modal-header">
+          <h4 class="modal-title">Formulario Nuevo Usuario</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="form-group">
+                    <label for="image">Url Avatar</label>
+                    <input type="text" class="form-control" id="photo" placeholder="http..." required  [(ngModel)]="user.photo" [ngModelOptions]="{standalone: true}">
+                  </div>
+                <div class="form-group">
+                  <label for="name">Nombre</label>
+                  <input type="text" class="form-control" id="name" placeholder="Nombre" required  [(ngModel)]="user.name" [ngModelOptions]="{standalone: true}">
+                </div>
+                <div class="form-group">
+                  <label for="description">Descripcion</label>
+                  <input type="text" class="form-control" id="description" placeholder="Descripcion" required  [(ngModel)]="user.description" [ngModelOptions]="{standalone: true}">
+                </div>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-warning" (click)="postUser(user)">Agregar</button>
+        </div>
+      </ng-template>
+
+</div>
+</body>

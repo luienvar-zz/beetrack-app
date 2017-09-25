@@ -1,0 +1,39 @@
+/* css que permite mostrar el boton eliminar de la tabla cuando se activa el hover */
+table button{
+    display: none;
+}
+table tr:hover button{
+    display: block;
+}
+
+/* Asigna un fondo para mejor diseño */
+.fondo{
+    background-image: url('../assets/images/panel-wall.jpg');
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.box{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+}
+
+/*Se modifica el fondo de los botones cuando se pasa el mouse sobre un bootstrap button con outline */
+.button1{
+    background-color: white;
+}
+.button1:hover {
+    background-color: #FFBA32;    
+}
+/* Cambia color del texto del boton */
+.button2{
+    color: #ffbb33;
+}
+.btn-circle {
+    border-radius: 50%;
+}
